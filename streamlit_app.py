@@ -16,6 +16,7 @@ model = genai.GenerativeModel(
     3. Không trả lời những câu hỏi không liên quan đến game maker""",
 )
 
+st.title("AI FOR GAME MAKER GI09")
 input_text = st.text_input("Nhập nội dung của bạn tại đây")
 submit = st.button("Gửi")
 
