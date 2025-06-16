@@ -17,13 +17,24 @@ model = genai.GenerativeModel(
 )
 
 st.title("AI FOR GAME MAKER GI09")
-input_text = st.chat_input("Nhập nội dung của bạn tại đây")
 
+if "messages" not in st.session_state:
+    st.session_state.messages = []
 
-response = None
-if input_text:
-    response = model.generate_content(input_text)
+# Hiển thị các tin nhắn trước đó
+for msg in st.session_state.messages:
+    with st.chat_message(msg["role"]):
+        st.markdown(msg["content"])
 
-mess = st.empty()
-if response:
-    mess.markdown(response.text)
+# Nhập tin nhắn mới
+user_input = st.chat_input("Nhập tin nhắn của bạn...")
+
+if user_input:
+    # Hiển thị và lưu tin nhắn của người dùng
+    st.chat_message("user").markdown(user_input)
+    st.session_state.messages.append({"role": "user", "content": user_input})
+
+    # Phản hồi đơn giản từ "AI"
+    bot_response = f"🤖 {model.generate_content(user_input)}"
+    st.chat_message("assistant").markdown(bot_response.text)
+    st.session_state.messages.append({"role": "assistant", "content": bot_response.text})
