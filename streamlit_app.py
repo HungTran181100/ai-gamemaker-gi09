@@ -35,6 +35,6 @@ if user_input:
     st.session_state.messages.append({"role": "user", "content": user_input})
 
     # Phản hồi đơn giản từ "AI"
-    bot_response = f"🤖 {model.generate_content(user_input)}"
-    st.chat_message("assistant").markdown(bot_response.text)
-    st.session_state.messages.append({"role": "assistant", "content": bot_response.text})
+    bot_response = f"🤖 {model.generate_content(user_input).text}"
+    st.chat_message("assistant").markdown(bot_response)
+    st.session_state.messages.append({"role": "assistant", "content": bot_response})
