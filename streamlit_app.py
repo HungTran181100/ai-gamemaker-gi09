@@ -17,11 +17,11 @@ model = genai.GenerativeModel(
 )
 
 st.title("AI FOR GAME MAKER GI09")
-input_text = st.text_input("Nhập nội dung của bạn tại đây")
-submit = st.button("Gửi")
+input_text = st.chat_input("Nhập nội dung của bạn tại đây")
+
 
 response = None
-if input_text and submit:
+if input_text:
     response = model.generate_content(input_text)
 
 mess = st.empty()
